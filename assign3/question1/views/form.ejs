@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+</head>
+<body>
+    <h1>User Registration Form</h1>
+ 
+     <!-- display validation errors -->
+      <% if(errors.length > 0) { %>
+       <h3>Errors:</h3>
+       <ul>
+        <% errors.forEach(function(error) { %>
+            <li>
+                <%= error.msg %>
+            </li>
+            <% }); %>
+       </ul>
+       <% } %>
+      
+       <!-- //Registration Form -->
+
+       <form action="/register" method="POST" enctype="multipart/form-data">
+        <label>Username:</label><br>
+        <input type="text" name="username" value="<%= old.username || '' %>"> <br><br>
+        
+        <label>Password:</label><br>
+        <input type="password" name="password"><br><br>
+
+        <label>Confirm Password:</label><br>
+        <input type="password" name="confirmpassword"><br><br>
+
+        <label>Email:</label><br>
+        <input type="text" name="email" value="<%= old.email || '' %>"><br><br>
+
+        <label>Gender:</label><br>
+        <input type="radio" name="gender" value="Male" <%= old.gender === "Male" ? "checked" : "" %>>Male
+        <input type="radio" name="gender" value="Female" <%= old.gender === "Female" ? "checked" : "" %>>Female
+        <br><br>
+
+        <label>Hobbies:</label><br>
+        <input type="checkbox" name="hobbies" value="Reading" 
+        <%= old.hobbies && (
+            Array.isArray(old.hobbies)? old.hobbies.includes("Reading")
+            :old.hobbies==="Reading"
+        ) ? "checked" : "" %>
+        >Reading
+         <input type="checkbox" name="hobbies" value="Sports" 
+        <%= old.hobbies && (
+            Array.isArray(old.hobbies)? old.hobbies.includes("Sports")
+            :old.hobbies==="Sports"
+        ) ? "checked" : "" %>
+        >Sports
+      <input type="checkbox" name="hobbies" value="Music" 
+        <%= old.hobbies && (
+            Array.isArray(old.hobbies)? old.hobbies.includes("Music")
+            :old.hobbies==="Music"
+        ) ? "checked" : "" %>
+        >Music
+        <br><br>
+
+        <label>Upload Profile Picture</label><br>
+        <input type="file" name="profilepic" accept=".jpg,.jpeg,.png,.gif"><br><br>
+
+        <label>Upload other Picture</label><br>
+        <input type="file" name="otherpics" multiple accept=".jpg,.jpeg,.png,.gif"><br><br>
+ 
+        <small>
+            Maximum 5 files,2 Mb each
+        </small> <br><br>
+
+        <button  type="submit">Register</button>
+
+       </form>
+</body>
+</html>

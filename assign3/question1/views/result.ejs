@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Result</title>
+</head>
+<body>
+    <h1>Registration Successful</h1>
+
+    <table border="1" cellpadding="10">
+    <tr>
+        <th>Field</th>
+        <th>Data</th>
+    </tr>
+    <tr>
+        <td>Username</td>
+        <td><%= data.username %></td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td><%= data.email %></td>
+    </tr>
+    <tr>
+        <td>Gender</td>
+        <td><%= data.gender %></td>
+    </tr>
+    <tr>
+        <td>Hobbies</td>
+        <td><%
+             let hobbies = Array.isArray(data.hobbies)
+            ? data.hobbies : [data.hobbies]; 
+             %>
+            <%= hobbies.join(",") %>
+        </td>
+    </tr>
+     <tr>
+        <td>Profile Picture</td>
+        <td><img src="/uploads/<%= files.profilepic[0].filename %>" width="150"> <br><br>
+        <a href="/download/<%=files.profilepic[0].filename %>">Download Profile Picture</a>
+        </td>
+     </tr>
+      <tr>
+        <td>Other Pictures</td>
+       <td>
+    <% files.otherpics.forEach(function(file) { %>
+
+        <img src="/uploads/<%= file.filename %>" width="150"><br>
+
+        <a href="/download/<%= file.filename %>">
+            Download Image
+        </a>
+
+        <br><br>
+
+    <% }); %>
+</td>
+      </tr>
+
+    </table>
+
+    <br>
+    <a href="/">Back to Registration</a>
+</body>
+</html>

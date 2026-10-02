@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h2>Admin Dashboard</h2>
+
+    <a href="/add">Add Employee</a> &nbsp;&nbsp;
+
+    <a href="/logout">Logout</a> <br><br>
+    
+    <table border="1" cellpadding=""10>
+        <tr>
+            <th>Emp Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Basic salary</th>
+            <th>HRA</th>
+            <th>DA</th>
+            <th>Gross Salary</th>
+            <th>Action</th>
+
+        </tr>
+
+        <% employees.forEach(function(emp){ %>
+            <tr>
+                <td><%= emp.empid %></td>
+                <td><%= emp.name %></td>
+                <td><%= emp.email %></td>
+                <td><%= emp.basicsalary %></td>
+                <td><%= emp.hra %></td>
+                <td><%= emp.da %></td>
+                <td><%= emp.grosssalary %></td>
+                <td>
+                    <a href="/edit/<%= emp._id %>">Edit</a> |
+                    <a href="/delete/<%= emp._id %>">Delete</a> 
+
+                </td>
+
+            </tr>
+
+  <% }) %>
+
+    </table>
+</body>
+</html>
